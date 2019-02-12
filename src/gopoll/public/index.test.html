@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <title>A GO Voting Poll Application With Pusher </title>
+
+
 </head>
 <body>
 
@@ -35,100 +37,40 @@
 
  
 
-    <script>
+    <script>   
+
+            new Vue({
+             el: "#userapp",
+         
+             data:{
+                 surname: "",
+                 givenname: "",
+                 log: ""     
+             },
+           
+             methods: {
+               
+               sub: function(event){
+                   
+                   if(this.surname == "" || this.givenname == ""){
+                     
+                     this.log = "Preencha o campo para login.";
+                     event.preventDefault();
+                   }else{
+                     this.log = "Go";
+                   }   
+               }
+           }
+           
+         });
+         
+                 </script>
+
    
+ 
 
-   new Vue({
-    el: "#userapp",
-
-    data:{
-        surname: "",
-        givenname: "",
-        log: ""     
-    },
-  
-    methods: {
-      
-      sub: function(event){
-          
-          if(this.surname == "" || this.givenname == ""){
-            
-            this.log = "Preencha o campo para login.";
-            event.preventDefault();
-          }else{
-            this.log = "Go";
-          }   
-      }
-  }
-  
-});
-
-
-/*
-        var app = new Vue({
-            el: '#app',
-            data: {
-                polls: [],
-                click: [],              
-            },
-            created: function () {
-                axios.get('/polls')
-                    .then(res => this.polls = res.data.items ? res.data.items : [])
-                    .catch(e => this.failed('Unsuccesful'))
-            },            
-            methods: {
-             
-                refresh: function (){
-                    axios.get('/polls')
-                    .then(res => this.polls = res.data.items ? res.data.items : [])
-                    .catch(e => this.failed('Unsuccesful'))
-                },
-                upvote: function (n) {
-                    if (this.click[n] == true) {
-                        this.polls[n].downvotes -= 1;
-                        this.polls[n].upvotes += 1;
-                    } else {
-                        this.polls[n].upvotes += 1;
-                        this.click[n] = true;
-                    }
-                },
-                downvote: function (n) {
-                    if (this.click[n] == true) {
-                        this.polls[n].upvotes -= 1;
-                        this.polls[n].downvotes += 1;
-                    } else {
-                        this.polls[n].downvotes += 1;
-                        this.click[n] = true;
-                    }
-                },
-                UpdatePoll: function (index) {
-                    let targetPoll = index + 1;
-                    axios.put('/poll/' + targetPoll, this.polls[index])
-                        .then(res => this.approved('Successful'))
-                        .catch(e => this.failed('Unsuccesful'))
-                },
-                approved: function (data) {
-                    $("#msg").css({
-                        "background-color": "rgb(94, 248, 94)",
-                        "border-radius": "20px"
-                    });
-                    $('#msg').html(data).fadeIn('slow');
-                    $('#msg').delay(3000).fadeOut('slow');
-                },
-                failed: function (data) {
-                    $("#msg").css({ "background-color": "rgb(248, 66, 66)", "border-radius": "20px" });
-                    $('#msg').html(data).fadeIn('slow');
-                    $('#msg').delay(3000).fadeOut('slow');
-                }
-            },
-        
-        })
-        */
-        </script>
-
-        
 </body>
+  
+
 </html>
-
-
 
