@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <title>A GO Voting Poll Application With Pusher </title>
+</head>
+<body>
+
+
+    <div class="row" style="margin: 1em 0em" v-for="(poll, index) in polls">
+        <div class="card col-md-4" style="margin: 20px auto; width: 25rem; background: rgb(93, 95, 104)">
+            <img class="card-img-top" src="https://vuejs.org/images/logo.png" alt="Card image">
+            <div class="card-body" >
+
+            <div id="userapp" class="container">
+                <div class="container" style="margin: 1em 0em" >
+                        <form v-on:submit="sub" action="#" method="post">
+                        <div class="btn btn-block"  style="background: #3653f7"><input type="text" name="surname" id="surname" v-model="surname" value="">Surname</input></div>
+                        <div class="btn btn-block"  style="background: #3653f7" ><input type="text" name="givenname" id="givenname" v-model="givenname" value="">Givenname</input></div>
+                    </form>
+                    <button class="btn btn-block" style="margin: 1em 0; background: #1bff8b; cursor: pointer; font-weight: bold" type="submit">submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+    <script>
+   
+
+   new Vue({
+    el: "#userapp",
+
+  data:{
+    surname: "",
+    givenname: ""      
+  },
+  
+  methods: {
+      
+      sub: function(event){
+          
+          if(this.surname == "" || this.givenname == ""){
+            
+            this.log = "Preencha o campo para login.";
+            event.preventDefault();
+          }else{
+            
+          }   
+      }
+  }
+  
+});
+
+
+/*
+        var app = new Vue({
+            el: '#app',
+            data: {
+                polls: [],
+                click: [],              
+            },
+            created: function () {
+                axios.get('/polls')
+                    .then(res => this.polls = res.data.items ? res.data.items : [])
+                    .catch(e => this.failed('Unsuccesful'))
+            },            
+            methods: {
+             
+                refresh: function (){
+                    axios.get('/polls')
+                    .then(res => this.polls = res.data.items ? res.data.items : [])
+                    .catch(e => this.failed('Unsuccesful'))
+                },
+                upvote: function (n) {
+                    if (this.click[n] == true) {
+                        this.polls[n].downvotes -= 1;
+                        this.polls[n].upvotes += 1;
+                    } else {
+                        this.polls[n].upvotes += 1;
+                        this.click[n] = true;
+                    }
+                },
+                downvote: function (n) {
+                    if (this.click[n] == true) {
+                        this.polls[n].upvotes -= 1;
+                        this.polls[n].downvotes += 1;
+                    } else {
+                        this.polls[n].downvotes += 1;
+                        this.click[n] = true;
+                    }
+                },
+                UpdatePoll: function (index) {
+                    let targetPoll = index + 1;
+                    axios.put('/poll/' + targetPoll, this.polls[index])
+                        .then(res => this.approved('Successful'))
+                        .catch(e => this.failed('Unsuccesful'))
+                },
+                approved: function (data) {
+                    $("#msg").css({
+                        "background-color": "rgb(94, 248, 94)",
+                        "border-radius": "20px"
+                    });
+                    $('#msg').html(data).fadeIn('slow');
+                    $('#msg').delay(3000).fadeOut('slow');
+                },
+                failed: function (data) {
+                    $("#msg").css({ "background-color": "rgb(248, 66, 66)", "border-radius": "20px" });
+                    $('#msg').html(data).fadeIn('slow');
+                    $('#msg').delay(3000).fadeOut('slow');
+                }
+            },
+        
+        })
+        */
+        </script>
+
+        
+</body>
+</html>
+
+
+

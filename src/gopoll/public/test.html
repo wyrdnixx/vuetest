@@ -1,0 +1,44 @@
+
+
+<div id="men"> 
+      
+      {{log}}
+      <form v-on:submit="sub" action="#" method="post">
+
+          <input v-model="login" placeholder="Login">
+          <input v-model="senha" placeholder="Senha">
+          <button type="submit">Entrar</button>
+          
+      </form>
+      
+  </div>
+
+  <script>
+
+
+  new Vue({
+    el: "#men",
+  
+    data:{
+        login: "",
+        senha: "",
+        log: ""
+    },
+    
+    methods: {
+        
+        sub: function(event){
+            
+            if(this.login == "" || this.senha == ""){
+              
+              this.log = "Preencha o campo para login.";
+              event.preventDefault();
+            }else{
+              this.log = "Go";
+            }   
+        }
+    }
+    
+  });
+
+  </script>

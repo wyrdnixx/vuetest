@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+    gopoll:
+        image: golang:latest
+        build:
+            context: .
+            dockerfile: ./src/gopoll/Dockerfile
+        ports:
+            - 9000:9000
+        volumes:
+            - ./:/go/src/github.com/wyrdnixx/votegovue                  
+        networks:
+            app-network:                
+                aliases:
+                - app.app.local
+networks:
+  app-network:
+    driver: bridge
