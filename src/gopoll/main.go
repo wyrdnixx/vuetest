@@ -56,11 +56,14 @@ func main() {
 	}
 
 	e.File("/", "src/gopoll/public/index.test.html")
+	e.File("/vue", "src/gopoll/public/index.html")
 	e.GET("/polls", handlers.GetPolls(db))
 	e.PUT("/poll/:index", handlers.UpdatePoll(db))
 
 	e.GET("/users", handlers.GetUsers())
 	e.PUT("/user/:user", handlers.UpdateUser())
+
+	e.PUT("/", handlers.UserData())
 
 	e.Logger.Fatal(e.Start(":9000"))
 }

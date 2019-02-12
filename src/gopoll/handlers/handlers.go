@@ -19,6 +19,19 @@ func GetPolls(db *sql.DB) echo.HandlerFunc {
 	}
 }
 
+func UserData() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var user models.UserData
+		c.Bind(&user)
+
+		surname, err := strconv.Atoi(c.Param("surname"))
+		fmt.Println(surname)
+		return err
+
+	}
+
+}
+
 func UpdatePoll(db *sql.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var poll models.Poll
