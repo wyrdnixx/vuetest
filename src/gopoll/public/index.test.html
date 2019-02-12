@@ -19,7 +19,8 @@
             <img class="card-img-top" src="https://vuejs.org/images/logo.png" alt="Card image">
             <div class="card-body" >
 
-            <div id="userapp" class="container">
+            <div id="userapp">
+                    {{log}}
                 <div class="container" style="margin: 1em 0em" >
                         <form v-on:submit="sub" action="#" method="post">
                         <div class="btn btn-block"  style="background: #3653f7"><input type="text" name="surname" id="surname" v-model="surname" value="">Surname</input></div>
@@ -39,12 +40,13 @@
    new Vue({
     el: "#userapp",
 
-  data:{
-    surname: "",
-    givenname: ""      
-  },
+    data:{
+        surname: "",
+        givenname: "",
+        log: ""     
+    },
   
-  methods: {
+    methods: {
       
       sub: function(event){
           
@@ -53,7 +55,7 @@
             this.log = "Preencha o campo para login.";
             event.preventDefault();
           }else{
-            
+            this.log = "Go";
           }   
       }
   }
