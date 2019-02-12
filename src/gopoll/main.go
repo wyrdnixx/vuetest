@@ -60,10 +60,7 @@ func main() {
 	e.GET("/polls", handlers.GetPolls(db))
 	e.PUT("/poll/:index", handlers.UpdatePoll(db))
 
-	e.GET("/users", handlers.GetUsers())
-	e.PUT("/user/:user", handlers.UpdateUser())
-
-	e.PUT("/", handlers.UserData())
+	e.PUT("/submit/", handlers.SubmitUser())
 
 	e.Logger.Fatal(e.Start(":9000"))
 }

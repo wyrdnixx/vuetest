@@ -26,12 +26,12 @@
 
                 <div id="userapp">
                     {{log}}
-                    <div class="container" style="margin: 1em 0em" >
-                        <form v-on:submit="sub" action="#" method="post">
+                    <div class="container" style="margin: 1em 0em" >                     
+                                <form>
                             <div class="btn btn-block"  style="background: #3653f7"><input type="text" name="surname" id="surname" v-model="surname" value="">Surname</input></div>
-                            <div class="btn btn-block"  style="background: #3653f7" ><input type="text" name="givenname" id="givenname" v-model="givenname" value="">Givenname</input></div>
-                            <button class="btn btn-block" style="margin: 1em 0; background: #1bff8b; cursor: pointer; font-weight: bold" type="submit">submit</button>
+                            <div class="btn btn-block"  style="background: #3653f7" ><input type="text" name="givenname" id="givenname" v-model="givenname" value="">Givenname</input></div>                            
                         </form>
+                        <button class="btn btn-block" style="margin: 1em 0; background: #1bff8b; cursor: pointer; font-weight: bold"  v-on:click="sub()">submit</button>
                         
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                    if(this.surname == "" || this.givenname == ""){
                      
                      this.log = "Daten unvollständig.";
-                     event.preventDefault();
+                     //event.preventDefault();
                    }else{
-                     this.log = "Go";
-                     axios.put('/poll/' + targetPoll, this.polls[index])
+                     this.log = "Go: " + this.surname;
+                    axios.put("/submit/",this.surname)
                    }   
                }
            }

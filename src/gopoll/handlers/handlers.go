@@ -19,13 +19,20 @@ func GetPolls(db *sql.DB) echo.HandlerFunc {
 	}
 }
 
-func UserData() echo.HandlerFunc {
+func SubmitUser() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var user models.UserData
 		c.Bind(&user)
 
-		surname, err := strconv.Atoi(c.Param("surname"))
+		fmt.Println(c.ParamNames())
+
+		surname, err := strconv.Atoi(c.Param("index"))
 		fmt.Println(surname)
+		if err == nil {
+			return c.JSON(http.StatusCreated, H{
+				"affected": surname,
+			})
+		}
 		return err
 
 	}
@@ -49,23 +56,5 @@ func UpdatePoll(db *sql.DB) echo.HandlerFunc {
 			})
 		}
 		return err
-	}
-}
-
-func UpdateUser() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var u models.UserData
-		err := c.Bind(&u)
-		fmt.Println(err.Error())
-		fmt.Println("Info: SurName: ", u.SurName)
-		fmt.Println("Info: GivenName: ", u.GivenName)
-		return err
-	}
-}
-
-func GetUsers() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		fmt.Println("INFO: GetUsers: ", c.JSON(http.StatusOK, models.GetUsers()))
-		return c.JSON(http.StatusOK, models.GetUsers())
 	}
 }

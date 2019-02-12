@@ -8,8 +8,3 @@ type UserData struct {
 	SurName   string `json:"surename"`
 	GivenName string `json:"givenname"`
 }
-
-func GetUsers() UserData {
-	_u := UserData{}
-	return _u
-}
