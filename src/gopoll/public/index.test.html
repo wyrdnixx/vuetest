@@ -21,7 +21,7 @@
 
     <div class="row" style="margin: 1em 0em" v-for="(poll, index) in polls">
         <div class="card col-md-4" style="margin: 20px auto; width: 25rem; background: rgb(93, 95, 104)">
-            <img class="card-img-top" src="https://vuejs.org/images/logo.png" alt="Card image">
+      <!--      <img class="card-img-top" src="https://vuejs.org/images/logo.png" alt="Card image"> -->
             <div class="card-body" >
 
                 <div id="userapp">
@@ -61,8 +61,9 @@
                      this.log = "Daten unvollständig.";
                      //event.preventDefault();
                    }else{
+                       
                      this.log = "Go: " + this.surname;
-                    axios.put("/submit/",this.surname)
+                    axios.put("/put",this.surname)
                    }   
                }
            }

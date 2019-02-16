@@ -19,22 +19,23 @@ func GetPolls(db *sql.DB) echo.HandlerFunc {
 	}
 }
 
-func SubmitUser() echo.HandlerFunc {
+func PutTask() echo.HandlerFunc {
+
 	return func(c echo.Context) error {
-		var user models.UserData
-		c.Bind(&user)
+		fmt.Println("in handler-PutTask...")
+		var task models.Task
 
-		fmt.Println(c.ParamNames())
+		c.Bind(&task)
 
-		surname, err := strconv.Atoi(c.Param("index"))
-		fmt.Println(surname)
-		if err == nil {
-			return c.JSON(http.StatusCreated, H{
-				"affected": surname,
-			})
-		}
-		return err
+		//surname, err := strconv.Itoa(c.Param())
 
+		fmt.Println("task-surname: " + c.Param("surname"))
+		name := models.PutTask(task.Surname)
+		fmt.Println("Surname: " + name)
+		return c.JSON(http.StatusCreated, H{
+			"created": name,
+		})
+		// Handle any errors
 	}
 
 }
